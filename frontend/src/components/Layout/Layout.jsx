@@ -11,7 +11,10 @@ export default function Layout() {
   const toast = useToast();
 
   useEffect(() => {
-    const socket = io('/', { path: '/socket.io', transports: ['websocket', 'polling'] });
+    const socket = io(import.meta.env.VITE_SOCKET_URL || '/', {
+  path: '/socket.io',
+  transports: ['websocket', 'polling'],
+});
     socket.on('connect',         () => socket.emit('join_dashboard'));
     socket.on('shipment_update', (data) => {
       const msg = data.status === 'Delayed'

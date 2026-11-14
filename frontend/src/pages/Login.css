@@ -1,0 +1,746 @@
+
+/* =========================================
+   LOGICOMMAND - ENTRY EXPERIENCE
+========================================= */
+
+.lc-entry {
+  --lc-bg: #080f1e;
+  --lc-panel: #151e30;
+  --lc-blue: #367ff0;
+  --lc-cyan: #59bdff;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: var(--lc-bg);
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.lc-entry button,
+.lc-entry input {
+  font: inherit;
+}
+
+/* =========================================
+   WELCOME SCREEN
+========================================= */
+
+.lc-welcome {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 42px 7%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 45%, #132b4c 0%, transparent 55%),
+    linear-gradient(135deg, #081321, #0b1930 55%, #081321);
+}
+
+.lc-map-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.lc-map-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(91, 154, 220, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 154, 220, 0.1) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: radial-gradient(ellipse, black, transparent 85%);
+}
+
+.lc-map-glow {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1260b8;
+  opacity: 0.12;
+  filter: blur(130px);
+  border-radius: 50%;
+}
+
+.lc-world-map {
+  position: absolute;
+  width: min(1150px, 100%);
+  height: min(620px, 80vh);
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  opacity: 0.85;
+  overflow: visible;
+}
+
+.lc-routes path {
+  stroke: url(#routeGradient);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 10;
+  opacity: 0.55;
+  filter: url(#routeGlow);
+  animation: lcRouteFlow 9s linear infinite;
+}
+
+.lc-routes path:nth-child(2) {
+  animation-delay: -2s;
+}
+
+.lc-routes path:nth-child(3) {
+  animation-delay: -4s;
+}
+
+.lc-routes path:nth-child(4) {
+  animation-delay: -6s;
+}
+
+.lc-routes path:nth-child(5) {
+  animation-delay: -3s;
+}
+
+.lc-routes path:nth-child(6) {
+  animation-delay: -5s;
+}
+
+@keyframes lcRouteFlow {
+  to {
+    stroke-dashoffset: -170;
+  }
+}
+
+.lc-map-points circle {
+  fill: #58bdff;
+  filter: url(#routeGlow);
+  animation: lcPointPulse 2s ease-in-out infinite;
+}
+
+.lc-map-points circle:nth-child(2n) {
+  animation-delay: 0.5s;
+}
+
+.lc-map-points circle:nth-child(3n) {
+  animation-delay: 1s;
+}
+
+@keyframes lcPointPulse {
+  0%, 100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.lc-origin {
+  fill: #ffffff;
+}
+
+.lc-origin-pulse {
+  fill: none;
+  stroke: #60c6ff;
+  stroke-width: 2;
+  transform-origin: 650px 325px;
+  animation: lcOriginPulse 2.5s ease-out infinite;
+}
+
+@keyframes lcOriginPulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+
+/* Brand */
+
+.lc-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  position: relative;
+  z-index: 2;
+}
+
+.lc-brand-icon {
+  width: 47px;
+  height: 47px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  color: white;
+  background: linear-gradient(135deg, #438fff, #205fca);
+  box-shadow: 0 8px 28px rgba(43, 119, 227, 0.3);
+}
+
+.lc-brand h1 {
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.lc-brand > div:last-child span {
+  display: block;
+  margin-top: 4px;
+  color: #86a9ce;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Welcome content */
+
+.lc-welcome-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  padding: 48px 25px;
+  text-align: center;
+}
+
+.lc-welcome-content h2 {
+  font-size: clamp(34px, 3.8vw, 49px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -1.8px;
+  color: #f8fafc;
+  text-shadow: 0 3px 25px rgba(0, 0, 0, 0.3);
+}
+
+.lc-welcome-content h2 span {
+  display: block;
+  color: #67baff;
+}
+
+.lc-welcome-content p {
+  max-width: 510px;
+  margin: 20px auto 29px;
+  color: #b4c7df;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.lc-welcome-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: #82c7ff;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 2.2px;
+}
+
+.lc-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3bd6a0;
+  box-shadow: 0 0 12px #3bd6a0;
+}
+
+.lc-welcome-content h2 {
+  font-size: clamp(38px, 5.2vw, 65px);
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -2.5px;
+  color: #f8fafc;
+}
+
+.lc-welcome-content h2 span {
+  display: block;
+  color: #67baff;
+}
+
+.lc-welcome-content p {
+  max-width: 550px;
+  margin: 23px auto 32px;
+  color: #a9bdd4;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.lc-enter-button {
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 0 28px;
+  border: 1px solid rgba(121, 184, 255, 0.35);
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(110deg, #2672dc, #398ff5);
+  box-shadow: 0 10px 35px rgba(36, 115, 221, 0.25);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.lc-enter-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 38px rgba(36, 115, 221, 0.4);
+}
+
+/* Footer */
+
+.lc-welcome-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  color: #6685a7;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+
+/* =========================================
+   LOGIN SCREEN
+========================================= */
+
+.lc-login-screen {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 75px 22px 55px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(34, 72, 126, 0.2), transparent 55%),
+    #0b1425;
+}
+
+.lc-back-button {
+  position: absolute;
+  top: 35px;
+  left: 45px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: none;
+  background: transparent;
+  color: #91a9c6;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.lc-back-button:hover {
+  color: #ffffff;
+}
+
+.lc-login-card {
+  width: 100%;
+  max-width: 475px;
+  padding: 43px 42px 36px;
+  border: 1px solid rgba(148, 174, 205, 0.16);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #1b263a, #151e30);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.lc-login-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.lc-login-logo .lc-brand-icon {
+  width: 49px;
+  height: 49px;
+}
+
+.lc-login-heading {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.lc-login-heading h2 {
+  color: #f5f8fc;
+  font-size: 26px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+}
+
+.lc-login-heading p {
+  margin-top: 9px;
+  color: #d0dceb;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.lc-login-heading span {
+  display: block;
+  margin-top: 8px;
+  color: #91a4bd;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.lc-form {
+  display: grid;
+  gap: 22px;
+}
+
+.lc-field label {
+  display: block;
+  margin-bottom: 9px;
+  color: #c4d1e0;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.lc-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 0 15px;
+  border: 1px solid #35445a;
+  border-radius: 12px;
+  background: #111e31;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lc-input-wrap:focus-within {
+  border-color: #488ff1;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.lc-input-wrap > svg {
+  flex-shrink: 0;
+  color: #90a8c5;
+}
+
+.lc-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: #f5f8fc;
+  font-size: 13px;
+}
+
+.lc-input-wrap input::placeholder {
+  color: #788ca6;
+}
+
+.lc-eye-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: #90a8c5;
+  cursor: pointer;
+}
+
+.lc-eye-button:hover {
+  color: white;
+}
+
+.lc-submit {
+  min-height: 53px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: none;
+  border-radius: 11px;
+  color: white;
+  background: linear-gradient(110deg, #347fe8, #398ff5);
+  box-shadow: 0 8px 24px rgba(44, 117, 218, 0.2);
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lc-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(44, 117, 218, 0.35);
+}
+
+.lc-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lc-spinner {
+  width: 17px;
+  height: 17px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: lcSpin 0.7s linear infinite;
+}
+
+@keyframes lcSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lc-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 10px;
+  color: #fca5a5;
+  background: rgba(127, 29, 29, 0.2);
+  font-size: 12px;
+}
+
+.lc-login-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 27px;
+  color: #8da5bf;
+  font-size: 11px;
+}
+
+.lc-login-footer svg {
+  color: #5caeec;
+}
+
+.lc-login-copyright {
+  position: absolute;
+  bottom: 22px;
+  color: #60758f;
+  font-size: 10px;
+  text-align: center;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 650px) {
+  .lc-welcome {
+    padding: 27px 22px;
+  }
+
+  .lc-welcome-content {
+    padding: 45px 0;
+  }
+
+  .lc-welcome-content h2 {
+    font-size: 40px;
+    letter-spacing: -1.5px;
+  }
+
+  .lc-welcome-content p {
+    font-size: 13px;
+  }
+
+  .lc-world-map {
+  position: absolute;
+  width: min(1450px, 125vw);
+  height: min(760px, 90vh);
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  opacity: 0.95;
+  overflow: visible;
+  animation: lcMapFloat 12s ease-in-out infinite alternate;
+}
+
+@keyframes lcMapFloat {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.045);
+  }
+}
+
+  .lc-welcome-footer {
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+
+  .lc-login-screen {
+    padding: 80px 18px 65px;
+  }
+
+  .lc-back-button {
+    top: 25px;
+    left: 20px;
+  }
+
+  .lc-login-card {
+    max-width: 420px;
+    padding: 35px 23px 29px;
+    border-radius: 19px;
+  }
+
+  .lc-login-heading h2 {
+    font-size: 24px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .lc-routes path {
+  stroke: url(#routeGradient);
+  stroke-width: 2;
+  stroke-dasharray: 8 12;
+  opacity: 0.75;
+  filter: url(#routeGlow);
+  animation: lcRouteFlow 5s linear infinite;
+}
+
+  .lc-enter-button,
+  .lc-submit {
+    transition: none;
+  }
+}
+
+.lc-welcome-content {
+  border-radius: 28px;
+  background: radial-gradient(
+    ellipse,
+    rgba(7, 18, 34, 0.28),
+    rgba(7, 18, 34, 0.02) 75%
+  );
+  backdrop-filter: blur(1.5px);
+}
+
+
+/* 3D Global Logistics Globe */
+
+.lc-globe-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lc-globe-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(1.035);
+  transform-origin: center center;
+
+  transition:
+    opacity 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+.lc-globe-container canvas.lc-globe-ready {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Keep welcome content above the globe */
+
+.lc-welcome > .lc-map-background {
+  display: none;
+}
+
+.lc-welcome > .lc-brand,
+.lc-welcome > .lc-welcome-content,
+.lc-welcome > .lc-welcome-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* Prevent accidental text selection on welcome screen */
+.lc-welcome,
+.lc-welcome * {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+/* =========================================
+   WELCOME CONTENT - FINAL POSITION TUNING
+========================================= */
+
+.lc-welcome-content {
+  transform: translateY(-45px);
+}
+
+.lc-welcome-label {
+  font-size: 9px;
+  margin-bottom: 20px;
+}
+
+.lc-welcome-content h2 {
+  font-size: clamp(36px, 4.6vw, 58px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+}
+
+.lc-welcome-content p {
+  font-size: 13px;
+  margin: 19px auto 28px;
+}
+
+/* Keep the button's original dimensions */
+.lc-enter-button {
+  min-height: 54px;
+  padding: 0 28px;
+  font-size: 13px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 650px) {
+  .lc-welcome-content {
+    transform: translateY(-25px);
+  }
+
+  .lc-welcome-content h2 {
+    font-size: clamp(32px, 8vw, 40px);
+    letter-spacing: -1.5px;
+  }
+
+  .lc-welcome-content p {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lc-globe-container canvas {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

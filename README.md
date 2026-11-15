@@ -100,7 +100,7 @@ Make sure you have installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/prajwalsiriyan-connect/LogiCommand.git
 ```
 
 Move into the project directory:
